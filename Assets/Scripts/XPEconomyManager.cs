@@ -5,6 +5,7 @@ public class XPEconomyManager : MonoBehaviour
 {
     public PlayerProfile playerProfile;
     public TextMeshProUGUI xpDisplay;
+    public ProgressionUIController progressionUI;
 
     void Start()
     {
@@ -32,7 +33,9 @@ public class XPEconomyManager : MonoBehaviour
             PlayerPrefs.SetInt("PF_" + attributeName, currentVal + 1);
 
             Debug.Log($"Upgraded {attributeName} to {currentVal + 1}");
-            RefreshUI();
+            progressionUI.RefreshDisplay();
+
+            //RefreshUI();
         }
         else
         {
