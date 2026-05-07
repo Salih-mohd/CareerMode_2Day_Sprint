@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -19,7 +20,7 @@ public class CareerStateController : MonoBehaviour
 
     void Start()
     {
-        // Check if we have a saved state, otherwise start at Creation
+         
         currentState = (CareerState)PlayerPrefs.GetInt("CurrentCareerState", 0);
         RefreshUI();
     }
@@ -30,21 +31,32 @@ public class CareerStateController : MonoBehaviour
         PlayerPrefs.SetInt("CurrentCareerState", (int)currentState);
         PlayerPrefs.Save();
         Debug.Log($"now in state{currentState}");
-        //RefreshUI();
+        sideDash.UpdateStatusDisplay(currentState.ToString());
+        RefreshUI();
     }
 
     void RefreshUI()
     {
-        // Deactivate all first
-        
+        int currentLevel = (int)currentState;
 
-        // Activate based on state
-        switch (currentState)
-        {
-            case CareerState.Creation: create.interactable=true; sideDash.UpdateStatusDisplay("Player creation"); break;
-            case CareerState.Season: hS.interactable=true; sideDash.UpdateStatusDisplay("HS Regular Season"); break;
-            case CareerState.Playoffs: hs_Playoff.interactable=true; sideDash.UpdateStatusDisplay("HS Playoff Season"); break;
-            case CareerState.Offers: offer.interactable=true; sideDash.UpdateStatusDisplay("College offers"); break;   
-        }
+         
+        create.interactable = (currentLevel >= 0);
+        hS.interactable = (currentLevel >= 1);
+        hs_Playoff.interactable = (currentLevel >= 2);
+        offer.interactable = (currentLevel >= 3);
     }
+
+    public void ResetAllCareerData()
+    {
+         
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+
+        currentState = CareerState.Creation;
+        RefreshUI();
+
+
+    }
+
+
 }

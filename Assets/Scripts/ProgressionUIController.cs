@@ -9,6 +9,7 @@ public class ProgressionUIController : MonoBehaviour
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI powerText;
     public TextMeshProUGUI staminaText;
+    public TextMeshProUGUI recruitText;
 
     // Call this whenever the panel is opened
     public void OpenPanel()
@@ -30,6 +31,8 @@ public class ProgressionUIController : MonoBehaviour
         speedText.text = "Speed: " + PlayerPrefs.GetInt("PF_Speed", 10);
         powerText.text = "Power: " + PlayerPrefs.GetInt("PF_Power", 10);
         staminaText.text = "Stamina: " + PlayerPrefs.GetInt("PF_Stamina", 10);
+        float recruitScore = PlayerPrefs.GetFloat("PF_Recruitment", 0);
+        recruitText.text = "Recruitment Score: " + recruitScore.ToString("F1");
     }
 
     public void ClosePanel()

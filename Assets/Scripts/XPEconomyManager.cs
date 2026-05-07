@@ -22,13 +22,13 @@ public class XPEconomyManager : MonoBehaviour
     public void BuyUpgrade(string attributeName)
     {
         int currentXP = PlayerPrefs.GetInt("PF_XP", 0);
-        int cost = 10; // Simple flat cost for prototype
+        int cost = 10;  
 
         if (currentXP >= cost)
         {
             PlayerPrefs.SetInt("PF_XP", currentXP - cost);
 
-            // Increment the specific attribute in PlayerPrefs
+             
             int currentVal = PlayerPrefs.GetInt("PF_" + attributeName);
             PlayerPrefs.SetInt("PF_" + attributeName, currentVal + 1);
 

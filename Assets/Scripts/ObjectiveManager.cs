@@ -5,11 +5,11 @@ public class ObjectiveManager : MonoBehaviour
 {
     public TextMeshProUGUI objectiveText;
     public SideDashboardController sideDash;
-    // 3 Simple Conditions
+     
     private string[] possibleObjectives = { "Score 2 Goals", "Make 3 Blocks", "0 Turnovers" };
     private int currentObjectiveIndex;
 
-    void OnEnable() // Runs every time the Season/Playoff panel opens
+    void OnEnable()  
     {
         RandomizeObjective();
     }
